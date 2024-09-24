@@ -7,7 +7,8 @@ data class Pokemon(
     val height: Int,
     val isDefault: Boolean,
     val order: Int,
-    val weight: Int
+    val weight: Int,
+    val abilities: PokemonAbilitiesList
 )
 
 data class AllPokemon(val pokemons: List<Pokemon>)
