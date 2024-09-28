@@ -21,8 +21,7 @@ fun MainMenu(){
             columns = GridCells.FixedSize(50.dp),
 
         ){
-            item {
-            }
+
         }
 
 

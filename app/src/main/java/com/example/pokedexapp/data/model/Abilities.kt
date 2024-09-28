@@ -1,9 +1,9 @@
 package com.example.pokedexapp.data.model
 
-data class PokemonAbilities(
+data class Abilities(
     val id: Int,
     val name: String,
     val isMainSeries: Boolean
 )
 
-data class PokemonAbilitiesList(val abilities: List<PokemonAbilities>)
+data class AbilitiesList(val abilities: List<Abilities>)
