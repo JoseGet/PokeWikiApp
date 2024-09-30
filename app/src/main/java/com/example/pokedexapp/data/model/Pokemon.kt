@@ -9,6 +9,7 @@ data class Pokemon(
     val order: Int,
     val weight: Int,
     val abilities: PokemonAbility,
+    val sprites: PokemonSprites
 )
 
 data class AllPokemon(val pokemons: List<Pokemon>)
