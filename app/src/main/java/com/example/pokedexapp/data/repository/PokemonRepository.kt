@@ -1,16 +1,12 @@
 package com.example.pokedexapp.data.repository
 
-import com.example.pokedexapp.data.api.PokeApiService
-import com.example.pokedexapp.data.model.AllPokemon
+import com.example.pokedexapp.data.api.PokeApi
+import com.example.pokedexapp.data.model.Pokemon
 
-class PokemonRepository constructor(
-    private val pokemonService: PokeApiService
+class PokemonRepository (
+    private val pokemonApi: PokeApi
 ) {
-    suspend fun getPokemonById(id: Int){
-        return pokemonService.getPokemonById(id)
-    }
-
-    suspend fun getAllPokemon(): AllPokemon{
-        return pokemonService.getAllPokemon()
+    suspend fun getPokemonById(id: Int): Pokemon{
+        return pokemonApi.retrofitService.getPokemonById(id)
     }
 }

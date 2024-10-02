@@ -1,7 +1,6 @@
 package com.example.pokedexapp.data.api
 
-import com.example.pokedexapp.data.model.AllPokemon
-import com.google.gson.Gson
+import com.example.pokedexapp.data.model.Pokemon
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -23,10 +22,7 @@ object PokeApi {
 interface PokeApiService {
 
     @GET("/pokemon/{id}")
-    suspend fun getPokemonById(@Path("id") id: Int)
-
-    @GET()
-    suspend fun getAllPokemon(): AllPokemon
+    suspend fun getPokemonById(@Path("id") id: Int): Pokemon
 
     @GET("/ability/{id}")
     suspend fun getAbilitiesById(@Path("id") id: Int)

@@ -4,17 +4,17 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.pokedexapp.data.api.PokeApi
 import com.example.pokedexapp.data.model.Pokemon
 import com.example.pokedexapp.data.repository.PokemonRepository
 import kotlinx.coroutines.launch
+import okio.IOException
 
-class MainMenuViewModel constructor(
+class MainMenuViewModel(
     private val pokemonRepository: PokemonRepository
 ): ViewModel(){
 
     private val _mainMenuState = mutableStateOf(MainMenuState())
-    val mainMenuState: State<MainMenuState> = _mainMenuState
+    var mainMenuState: State<MainMenuState> = _mainMenuState
 
     init {
         getAllPokemon()
@@ -22,10 +22,19 @@ class MainMenuViewModel constructor(
 
     private fun getAllPokemon() {
         viewModelScope.launch {
-            val listPokemon = pokemonRepository.getAllPokemon()
-            _mainMenuState.value = _mainMenuState.value.copy(
-                list = listPokemon.pokemons
-            )
+
+            try {
+                val listPokemon : MutableList<Pokemon> = emptyList<Pokemon>().toMutableList()
+
+                for(i in 1..30)
+                {
+                    listPokemon[i] = pokemonRepository.getPokemonById(i)
+                }
+
+                _mainMenuState.value = _mainMenuState.value.copy(
+                    list = listPokemon
+                )
+            } catch (e: IOException){}
         }
     }
 
