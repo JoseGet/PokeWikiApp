@@ -1,5 +1,6 @@
 package com.example.pokedexapp
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -15,7 +16,7 @@ import com.example.pokedexapp.ui.models.PokemonCard
 @Composable
 fun MainMenu(){
 
-    val pokemonViewModel: MainMenuViewModel = viewModel()
+    val pokemonViewModel: MainMenuViewModel = viewModel(factory = MainMenuViewModel.Factory)
     val mainMenuState by pokemonViewModel.mainMenuState
 
     Column(
@@ -24,9 +25,11 @@ fun MainMenu(){
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
         ){
-            items(items = mainMenuState.list, key = {pokemon -> pokemon.id}) { pokemon ->
+            items(items = mainMenuState.list) { pokemon ->
                 PokemonCard(pokemon = pokemon)
             }
+
+            Log.e("zeget", "${mainMenuState.list}")
         }
     }
 
