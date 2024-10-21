@@ -11,7 +11,3 @@ data class Pokemon(
     val abilities: PokemonAbility,
     val sprites: PokemonSprites
 )
-
-data class AllPokemon(
-    val allPokemon: List<Pokemon>
-)

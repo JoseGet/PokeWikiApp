@@ -9,10 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import coil.compose.AsyncImage
 import com.example.pokedexapp.data.model.Pokemon
+import com.example.pokedexapp.data.model.ResponsePokemon
 
 @Composable
 fun PokemonCard(
-    pokemon: Pokemon
+    pokemon: ResponsePokemon
 ) {
     Card (
         modifier = Modifier,
@@ -23,7 +24,7 @@ fun PokemonCard(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             AsyncImage(model =
-                pokemon.sprites.frontDefault,
+                pokemon.url,
                 contentDescription = null)
 
             Text(

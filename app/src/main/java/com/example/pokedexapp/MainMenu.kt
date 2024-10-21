@@ -25,11 +25,11 @@ fun MainMenu(){
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
         ){
-            items(items = mainMenuState.list) { pokemon ->
-                PokemonCard(pokemon = pokemon)
+            items(mainMenuState.list) { item ->
+                PokemonCard(pokemon = item)
             }
 
-            Log.e("zeget", "${mainMenuState.list}")
+            Log.e("zeget", "Lista no ViewModel: ${mainMenuState.list}")
         }
     }
 
