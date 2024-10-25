@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccountCircle
 import androidx.compose.material.icons.rounded.Menu
@@ -24,7 +25,8 @@ fun TopBar() {
     Row (
         modifier = Modifier
             .background(color = Color.White)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .statusBarsPadding(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Absolute.SpaceBetween
     ){
