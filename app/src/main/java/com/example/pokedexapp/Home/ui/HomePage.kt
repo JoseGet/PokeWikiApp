@@ -6,13 +6,19 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.testing.TestNavHostController
 import com.example.pokedexapp.Home.ui.models.HomePageGrid
 import com.example.pokedexapp.Home.ui.models.TopBar
 
 @Composable
-fun HomePage() {
+fun HomePage(
+    navController: NavController
+) {
 
     Column(
         modifier = Modifier
@@ -20,8 +26,8 @@ fun HomePage() {
             .background(color = Color.White)
     ) {
 
-        TopBar()
-        HomePageGrid()
+        TopBar(navController)
+        HomePageGrid(navController)
 
     }
 
@@ -30,5 +36,6 @@ fun HomePage() {
 @Preview
 @Composable
 fun HomePagePreview() {
-    HomePage()
+    val navController = TestNavHostController(LocalContext.current)
+    HomePage(navController = navController)
 }

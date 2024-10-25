@@ -17,9 +17,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.example.pokedexapp.navigation.routes.HomePageRoutes
 
 @Composable
-fun HomePageGrid() {
+fun HomePageGrid(
+    navController: NavController
+) {
 
     val gridList: List<String> = listOf("Pokemons", "Games", "Musics", "Items")
 
@@ -31,7 +35,7 @@ fun HomePageGrid() {
     ) {
 
         items(4){item ->
-            HomePageGridCard(message = gridList[item])
+            HomePageGridCard(message = gridList[item], navController)
         }
 
     }
@@ -40,14 +44,17 @@ fun HomePageGrid() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomePageGridCard(
-    message: String
+    message: String,
+    navController: NavController
 ) {
     Card(
         modifier = Modifier
             .padding(20.dp)
             .background(Color.Transparent)
             .size(80.dp),
-        onClick = {}
+        onClick = {
+            navController.navigate(HomePageRoutes.Pokemons.name)
+        }
     ) {
 
         Spacer(modifier = Modifier.padding(top = 30.dp))
@@ -64,5 +71,5 @@ fun HomePageGridCard(
 @Preview
 @Composable
 fun HomePageGridPreview() {
-    HomePageGrid()
+    //HomePageGrid()
 }

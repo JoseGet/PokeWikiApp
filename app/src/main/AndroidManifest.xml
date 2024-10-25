@@ -17,7 +17,7 @@
         android:theme="@style/Theme.PokedexApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".PokemonsScreen.MainActivity"
             android:exported="false" />
         <activity
             android:name=".Home.HomePageActivity"

@@ -1,6 +1,6 @@
 package com.example.pokedexapp.navigation.routes
 
-enum class HomePageRoutes {
+enum class HomePageRoutes() {
 
     Home,
     Pokemons,

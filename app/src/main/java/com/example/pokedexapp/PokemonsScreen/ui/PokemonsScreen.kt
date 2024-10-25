@@ -1,4 +1,4 @@
-package com.example.pokedexapp
+package com.example.pokedexapp.PokemonsScreen.ui
 
 import android.util.Log
 import androidx.compose.foundation.layout.Column
@@ -9,12 +9,16 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.pokedexapp.ui.models.PokemonCard
+import androidx.navigation.NavController
+import com.example.pokedexapp.Home.ui.models.TopBar
+import com.example.pokedexapp.PokemonsScreen.MainMenuViewModel
+import com.example.pokedexapp.PokemonsScreen.ui.components.PokemonCard
 
 @Composable
-fun MainMenu(){
+fun PokemonsScreen(
+    navController: NavController
+){
 
     val pokemonViewModel: MainMenuViewModel = viewModel(factory = MainMenuViewModel.Factory)
     val mainMenuState by pokemonViewModel.mainMenuState
@@ -22,14 +26,14 @@ fun MainMenu(){
     Column(
        modifier = Modifier.fillMaxSize()
     ){
+        TopBar(navController)
+
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
         ){
             items(mainMenuState.list) { item ->
                 PokemonCard(pokemon = item)
             }
-
-            Log.e("zeget", "Lista no ViewModel: ${mainMenuState.list}")
         }
     }
 

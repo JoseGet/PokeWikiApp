@@ -82,6 +82,10 @@ dependencies {
 
     //Navigation
     implementation("androidx.navigation:navigation-compose:2.8.0")
+    implementation("androidx.navigation:navigation-fragment:2.8.0")
+    implementation("androidx.navigation:navigation-ui:2.8.0")
+    implementation("androidx.navigation:navigation-testing:2.8.0")
+
 
 
 }

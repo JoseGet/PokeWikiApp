@@ -1,4 +1,4 @@
-package com.example.pokedexapp
+package com.example.pokedexapp.PokemonsScreen
 
 import android.util.Log
 import androidx.compose.runtime.State
@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.pokedexapp.PokeWikiApplication
 import com.example.pokedexapp.data.model.ResponsePokemon
 import com.example.pokedexapp.data.repository.PokemonRepository
 import kotlinx.coroutines.launch
@@ -29,8 +30,6 @@ class MainMenuViewModel(
 
             try {
                 val listPokemon = pokemonRepository.getAllPokemon()
-
-                Log.e("zeget", "lista de pokemon: $listPokemon")
 
                 _mainMenuState.value = _mainMenuState.value.copy(
                     list = listPokemon.results
