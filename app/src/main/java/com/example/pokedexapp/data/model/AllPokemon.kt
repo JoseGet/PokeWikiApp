@@ -30,5 +30,5 @@ data class ResponsePokemon(
 
     @SerializedName("url")
     @Expose
-    val url: String
+    var url: String
 )

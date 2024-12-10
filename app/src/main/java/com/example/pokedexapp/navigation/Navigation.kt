@@ -5,7 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.pokedexapp.Home.ui.HomePage
-import com.example.pokedexapp.PokemonsScreen.ui.PokemonsScreen
+import com.example.pokedexapp.Pokemons.ui.PokemonsScreen
 import com.example.pokedexapp.navigation.routes.HomePageRoutes
 
 @Composable

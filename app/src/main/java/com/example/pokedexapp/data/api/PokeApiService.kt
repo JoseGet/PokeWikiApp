@@ -9,10 +9,10 @@ import retrofit2.http.Query
 interface PokeApiService {
 
     @GET("pokemon/{id}/")
-    suspend fun getPokemonById(@Path("id") id: Int): Pokemon
+    suspend fun getPokemonById(@Path("id") id: String): Pokemon
 
-    @GET("pokemon/")
-    suspend fun getAllPokemon(): ResponseAllPokemon
+    @GET("pokemon/{offset}")
+    suspend fun getAllPokemon(@Query("offset") offset: Int): ResponseAllPokemon
 
     @GET("ability/{id}/")
     suspend fun getAbilitiesById(@Path("id") id: Int)

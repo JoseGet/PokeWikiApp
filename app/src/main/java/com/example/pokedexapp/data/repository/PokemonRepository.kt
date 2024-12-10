@@ -7,19 +7,19 @@ import com.example.pokedexapp.data.model.ResponsePokemon
 
 interface PokemonRepository {
 
-    suspend fun getPokemonById(id: Int): Pokemon
+    suspend fun getPokemonById(url: String): Pokemon
 
-    suspend fun getAllPokemon(): ResponseAllPokemon
+    suspend fun getAllPokemon(offset: Int): ResponseAllPokemon
 }
 
 class NetworkPokemonRepository(
     private val pokeApiService: PokeApiService
 ) : PokemonRepository {
 
-    override suspend fun getPokemonById(id: Int): Pokemon =
-        pokeApiService.getPokemonById(id)
+    override suspend fun getPokemonById(url: String): Pokemon =
+        pokeApiService.getPokemonById(url)
 
-    override suspend fun getAllPokemon(): ResponseAllPokemon =
-        pokeApiService.getAllPokemon()
+    override suspend fun getAllPokemon(offset: Int): ResponseAllPokemon =
+        pokeApiService.getAllPokemon(offset)
 
 }
