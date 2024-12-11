@@ -1,5 +1,6 @@
 package com.example.pokedexapp.Pokemons
 
+import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -17,14 +18,21 @@ import com.example.pokedexapp.data.model.Pokemon
 import com.example.pokedexapp.data.model.ResponsePokemon
 import com.example.pokedexapp.data.repository.PokemonRepository
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 
 class PokemonsViewModel(
     private val pokemonRepository: PokemonRepository
 ): ViewModel(){
 
-    private val _PokemonsState = mutableStateOf(PokemonsState())
-    var pokemonsState: State<PokemonsState> = _PokemonsState
+    private val _PokemonsState = MutableStateFlow(PokemonsState())
+    var pokemonsState: StateFlow<PokemonsState> = _PokemonsState.asStateFlow()
 
     private var offset = 0
 
@@ -34,13 +42,22 @@ class PokemonsViewModel(
 
     private fun getAllPokemon(offset: Int) {
         viewModelScope.launch {
-
             try {
+
+                _PokemonsState.update { it.copy(isLoading = true) }
+
                 val listPokemon = pokemonRepository.getAllPokemon(offset)
 
-                _PokemonsState.value = _PokemonsState.value.copy(
-                    list = listPokemon.results
-                )
+                Log.d("zeget", "primeira chamada: $listPokemon")
+
+                _PokemonsState.update { state ->
+                    state.copy(
+                        list = listPokemon.results,
+                        isLoading = false
+                    )
+                }
+
+                Log.d("zeget", "estado pos chamada: ${_PokemonsState.value.list}")
 
             } catch (e: Exception) {}
         }
@@ -48,26 +65,39 @@ class PokemonsViewModel(
 
     fun loadMoreItems() {
         viewModelScope.launch {
-            val currentList = _PokemonsState.value.list
-            this@PokemonsViewModel.offset += 20
-            val newList = pokemonRepository.getAllPokemon(offset).results
 
-            val finalList = (currentList + newList)
-
-            _PokemonsState.value = _PokemonsState.value.copy(
-                list = finalList
-            )
-        }
-    }
-
-    fun getOnePokemon(url: String) {
-        viewModelScope.launch {
             try {
-                val onePokemon: Pokemon = pokemonRepository.getPokemonById(url)
+
+                _PokemonsState.update { it.copy(isLoading = true) }
+
+                val currentList = _PokemonsState.value.list
+                this@PokemonsViewModel.offset += 20
+                val newList = pokemonRepository.getAllPokemon(offset).results
+
+                val finalList = currentList + newList
+
+                _PokemonsState.update { state ->
+                    state.copy(
+                        list = finalList,
+                        isLoading = false
+                    )
+                }
+
+                Log.d("zeget", "here: $currentList")
+                Log.d("zeget", "aqui : $finalList")
 
             } catch (e: Exception) {}
         }
     }
+
+//    fun getOnePokemon(url: String) {
+//        viewModelScope.launch {
+//            try {
+//                val onePokemon: Pokemon = pokemonRepository.getPokemonById(url)
+//
+//            } catch (e: Exception) {}
+//        }
+//    }
 
     companion object {
         val Factory: ViewModelProvider.Factory = viewModelFactory {

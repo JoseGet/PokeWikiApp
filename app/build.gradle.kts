@@ -86,6 +86,6 @@ dependencies {
     implementation("androidx.navigation:navigation-ui:2.8.0")
     implementation("androidx.navigation:navigation-testing:2.8.0")
 
-
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
 }
