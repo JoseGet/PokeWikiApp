@@ -3,10 +3,13 @@ package com.example.pokedexapp.Pokemons
 import android.util.Log
 import androidx.compose.runtime.State
 import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.geometry.Offset
+import androidx.lifecycle.VIEW_MODEL_STORE_OWNER_KEY
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -39,6 +42,9 @@ class PokemonsViewModel(
     init {
         getAllPokemon(offset)
     }
+
+    var inputSearch by mutableStateOf("")
+        private set
 
     private fun getAllPokemon(offset: Int) {
         viewModelScope.launch {
@@ -110,8 +116,17 @@ class PokemonsViewModel(
         }
     }
 
+    fun changeSearch(input: String) {
+        _PokemonsState.update { pokemonsState ->
+            pokemonsState.copy(
+                search = input
+            )
+        }
+    }
+
     data class PokemonsState(
         val list: List<ResponsePokemon> = emptyList(),
+        val search: String = "",
         val isError : Boolean = false,
         val isLoading: Boolean = false
     )

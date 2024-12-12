@@ -30,6 +30,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.pokedexapp.Home.ui.models.TopBar
 import com.example.pokedexapp.Pokemons.PokemonsViewModel
 import com.example.pokedexapp.Pokemons.ui.components.PokemonCard
+import com.example.pokedexapp.Pokemons.ui.components.SearchBar
 import com.example.pokedexapp.Pokemons.ui.components.TitleRow
 import com.example.pokedexapp.R
 import com.example.pokedexapp.data.model.ResponsePokemon
@@ -77,13 +78,19 @@ fun PokemonsScreenColumn(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(colorResource(id = R.color.background_pokemon_list)),
+            .background(colorResource(id = R.color.standard_red)),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
 
         Spacer(modifier = Modifier.height(12.dp))
 
         TitleRow()
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        SearchBar()
+
+        Spacer(modifier = Modifier.height(12.dp))
 
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
