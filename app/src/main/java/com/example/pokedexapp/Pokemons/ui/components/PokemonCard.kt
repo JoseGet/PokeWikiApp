@@ -34,7 +34,8 @@ import kotlinx.coroutines.coroutineScope
 
 @Composable
 fun PokemonCard(
-    pokemon: ResponsePokemon
+    pokemon: ResponsePokemon,
+    id: Int
 ) {
     Card (
         modifier = Modifier,
@@ -45,7 +46,7 @@ fun PokemonCard(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             AsyncImage(
-                model = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png",
+                model = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png",
                 contentDescription = null,
                 modifier = Modifier
                     .size(200.dp)
@@ -69,5 +70,5 @@ fun PokemonCardPreview() {
         name = "Bulbasaur",
         url = image_for_test
     )
-    PokemonCard(pokemon = fakeResponsePokemon)
+    PokemonCard(pokemon = fakeResponsePokemon, id = 0)
 }
