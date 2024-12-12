@@ -46,7 +46,7 @@ fun PokemonCard(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             AsyncImage(
-                model = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png",
+                model = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png",
                 contentDescription = null,
                 modifier = Modifier
                     .size(200.dp)

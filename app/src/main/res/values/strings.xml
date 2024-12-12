@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">PokedexApp</string>
     <string name="welcome">What Pokémon are you looking for ?</string>
+    <string name="pokemons_screen_title">PokeWiki</string>
 </resources>

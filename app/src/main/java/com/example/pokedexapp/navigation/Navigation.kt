@@ -22,7 +22,7 @@ fun Navigation() {
         }
 
         composable(route = HomePageRoutes.Pokemons.name) {
-            PokemonsScreen(navController)
+            PokemonsScreen()
         }
     }
 
